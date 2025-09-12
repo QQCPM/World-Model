@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Interactive Causal Campus Navigation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .campus-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(16, 30px);
+            grid-template-rows: repeat(16, 30px);
+            gap: 2px;
+            border: 3px solid #2c3e50;
+            border-radius: 15px;
+            padding: 15px;
+            background: #ecf0f1;
+            justify-self: center;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .grid-cell {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        .open { background: #2c3e50; }
+        .path { background: #7f8c8d; }
+        .building { background: #34495e; }
+        
+        .agent {
+            background: #e74c3c !important;
+            color: white;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.6);
+        }
+        
+        .goal {
+            background: #f39c12 !important;
+            color: white;
+            animation: glow 2s infinite;
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(243, 156, 18, 0.6); }
+            50% { box-shadow: 0 0 25px rgba(243, 156, 18, 1); }
+        }
+        
+        .controls {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .control-group {
+            margin-bottom: 25px;
+        }
+        
+        .control-group h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .control-row label {
+            font-weight: 600;
+            color: #34495e;
+            font-size: 14px;
+        }
+        
+        .control-row select, .control-row input[type="range"] {
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+        
+        .control-row select:focus, .control-row input[type="range"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .slider-value {
+            background: #3498db;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .nav-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .nav-button:active {
+            transform: translateY(0);
+        }
+        
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        
+        .preset-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.3s ease;
+        }
+        
+        .preset-btn:hover {
+            background: #229954;
+        }
+        
+        .status-info {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            margin-top: 20px;
+        }
+        
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .status-row:last-child {
+            border-bottom: none;
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .color-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 2px solid #2c3e50;
+        }
+        
+        .weather-effects {
+            position: absolute;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .rain-effect {
+            background: linear-gradient(transparent, rgba(52, 152, 219, 0.1) 50%, transparent);
+            animation: rain 1s linear infinite;
+        }
+        
+        .snow-effect {
+            background: radial-gradient(circle, rgba(236, 240, 241, 0.8) 2px, transparent 2px);
+            background-size: 20px 20px;
+            animation: snow 3s linear infinite;
+        }
+        
+        @keyframes rain {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        @keyframes snow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        .night-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.6);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ Interactive Causal Campus Navigation</h1>
+            <p>Control causal factors in real-time and see how they affect navigation</p>
+        </div>
+        
+        <div class="main-grid">
+            <div class="campus-section">
+                <div style="position: relative;">
+                    <div class="campus-grid" id="campusGrid"></div>
+                    <div class="weather-effects" id="weatherEffects"></div>
+                    <div class="night-overlay" id="nightOverlay" style="display: none;"></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="nav-button" onclick="moveAgent('north')">⬆️ North</button>
+                    <button class="nav-button" onclick="moveAgent('stay')">⏹️ Stay</button>
+                    <button class="nav-button" onclick="moveAgent('south')">⬇️ South</button>
+                    <button class="nav-button" onclick="moveAgent('west')">⬅️ West</button>
+                    <button class="nav-button" onclick="autoNavigate()" id="autoBtn">🤖 Auto</button>
+                    <button class="nav-button" onclick="moveAgent('east')">➡️ East</button>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="color-box" style="background: #2c3e50;"></div>
+                        <span>🌫️ Open Space</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background: #7f8c8d;"></div>
+                        <span>🛤️ Paths</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background: #34495e;"></div>
+                        <span>🏢 Buildings</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background: #e74c3c;"></div>
+                        <span>🚶 Agent (You)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background: #f39c12;"></div>
+                        <span>🎯 Goal</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <h3>⏰ Time of Day</h3>
+                    <div class="control-row">
+                        <label>Hour: <span class="slider-value" id="timeValue">14:00</span></label>
+                        <input type="range" id="timeSlider" min="0" max="23" value="14" oninput="updateTime()">
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>🌤️ Weather</h3>
+                    <div class="control-row">
+                        <select id="weatherSelect" onchange="updateWeather()">
+                            <option value="sunny">☀️ Sunny</option>
+                            <option value="rain">🌧️ Rain</option>
+                            <option value="snow">❄️ Snow</option>
+                            <option value="fog">🌫️ Fog</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>🎪 Campus Events</h3>
+                    <div class="control-row">
+                        <select id="eventSelect" onchange="updateEvent()">
+                            <option value="normal">📚 Normal</option>
+                            <option value="gameday">🏈 Game Day</option>
+                            <option value="exam">📝 Exam Week</option>
+                            <option value="break">🎈 Spring Break</option>
+                            <option value="construction">🚧 Construction</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>👥 Crowd Density</h3>
+                    <div class="control-row">
+                        <label>Level: <span class="slider-value" id="crowdValue">Medium (3/5)</span></label>
+                        <input type="range" id="crowdSlider" min="1" max="5" value="3" oninput="updateCrowd()">
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>🎲 Preset Scenarios</h3>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" onclick="loadPreset('morning')">🌅 Quiet Morning</button>
+                        <button class="preset-btn" onclick="loadPreset('rainy')">🌧️ Rainy Day</button>
+                        <button class="preset-btn" onclick="loadPreset('gameday')">🏈 Game Day</button>
+                        <button class="preset-btn" onclick="loadPreset('night')">🌙 Late Night</button>
+                        <button class="preset-btn" onclick="loadPreset('chaos')">⚡ Perfect Storm</button>
+                        <button class="preset-btn" onclick="resetEpisode()">🔄 Reset</button>
+                    </div>
+                </div>
+                
+                <div class="status-info">
+                    <h3 style="margin-bottom: 15px; color: #2c3e50;">📊 Status</h3>
+                    <div class="status-row">
+                        <span>🚶 Agent Position:</span>
+                        <span id="agentPos">(1, 13)</span>
+                    </div>
+                    <div class="status-row">
+                        <span>🎯 Goal Position:</span>
+                        <span id="goalPos">(5, 5)</span>
+                    </div>
+                    <div class="status-row">
+                        <span>📏 Distance:</span>
+                        <span id="distance">8.5 units</span>
+                    </div>
+                    <div class="status-row">
+                        <span>💰 Total Reward:</span>
+                        <span id="totalReward">0.0</span>
+                    </div>
+                    <div class="status-row">
+                        <span>👣 Steps:</span>
+                        <span id="stepCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let gameState = {
+            agent: {x: 1, y: 13},
+            goal: {x: 5, y: 5},
+            causal: {
+                time_hour: 14,
+                day_week: 2,
+                weather: 'sunny',
+                event: 'normal',
+                crowd_density: 3
+            },
+            totalReward: 0,
+            steps: 0,
+            autoMode: false
+        };
+        
+        // Campus layout
+        const campus = {
+            buildings: {
+                library: {x: 3, y: 3, w: 3, h: 3, symbol: '🏛️'},
+                gym: {x: 10, y: 2, w: 3, h: 2, symbol: '🏃'},
+                cafeteria: {x: 2, y: 10, w: 3, h: 3, symbol: '🍽️'},
+                academic: {x: 8, y: 8, w: 4, h: 4, symbol: '📚'},
+                stadium: {x: 1, y: 1, w: 3, h: 3, symbol: '🏈'},
+                dorms: {x: 12, y: 11, w: 3, h: 2, symbol: '🏠'}
+            }
+        };
+        
+        function initializeGrid() {
+            const grid = document.getElementById('campusGrid');
+            grid.innerHTML = '';
+            
+            for (let y = 0; y < 16; y++) {
+                for (let x = 0; x < 16; x++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'grid-cell';
+                    cell.id = `cell-${x}-${y}`;
+                    
+                    // Determine cell type
+                    let cellType = 'open';
+                    let symbol = '';
+                    
+                    // Check paths
+                    if ((y === 7 && x >= 0 && x < 16) || (x === 7 && y >= 0 && y < 16)) {
+                        cellType = 'path';
+                        symbol = '🛤️';
+                    }
+                    
+                    // Check buildings
+                    for (let [name, building] of Object.entries(campus.buildings)) {
+                        if (x >= building.x && x < building.x + building.w && 
+                            y >= building.y && y < building.y + building.h) {
+                            cellType = 'building';
+                            symbol = building.symbol;
+                            break;
+                        }
+                    }
+                    
+                    cell.className += ' ' + cellType;
+                    cell.textContent = symbol;
+                    grid.appendChild(cell);
+                }
+            }
+            
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            // Clear previous agent and goal
+            document.querySelectorAll('.grid-cell').forEach(cell => {
+                cell.classList.remove('agent', 'goal');
+            });
+            
+            // Place agent
+            const agentCell = document.getElementById(`cell-${gameState.agent.x}-${gameState.agent.y}`);
+            if (agentCell) {
+                agentCell.classList.add('agent');
+                agentCell.textContent = '🚶';
+            }
+            
+            // Place goal
+            const goalCell = document.getElementById(`cell-${gameState.goal.x}-${gameState.goal.y}`);
+            if (goalCell) {
+                goalCell.classList.add('goal');
+                goalCell.textContent = '🎯';
+            }
+            
+            updateStatus();
+            updateCausalEffects();
+        }
+        
+        function updateStatus() {
+            document.getElementById('agentPos').textContent = `(${gameState.agent.x}, ${gameState.agent.y})`;
+            document.getElementById('goalPos').textContent = `(${gameState.goal.x}, ${gameState.goal.y})`;
+            
+            const distance = Math.sqrt(
+                Math.pow(gameState.goal.x - gameState.agent.x, 2) + 
+                Math.pow(gameState.goal.y - gameState.agent.y, 2)
+            );
+            document.getElementById('distance').textContent = `${distance.toFixed(1)} units`;
+            document.getElementById('totalReward').textContent = gameState.totalReward.toFixed(1);
+            document.getElementById('stepCount').textContent = gameState.steps;
+        }
+        
+        function updateCausalEffects() {
+            const weatherEffects = document.getElementById('weatherEffects');
+            const nightOverlay = document.getElementById('nightOverlay');
+            
+            // Clear weather effects
+            weatherEffects.className = 'weather-effects';
+            
+            // Apply weather effects
+            if (gameState.causal.weather === 'rain') {
+                weatherEffects.classList.add('rain-effect');
+            } else if (gameState.causal.weather === 'snow') {
+                weatherEffects.classList.add('snow-effect');
+            }
+            
+            // Night effect
+            if (gameState.causal.time_hour < 6 || gameState.causal.time_hour > 20) {
+                nightOverlay.style.display = 'block';
+            } else {
+                nightOverlay.style.display = 'none';
+            }
+            
+            // Crowd effects (add crowd symbols for high density)
+            if (gameState.causal.crowd_density >= 4) {
+                addCrowdEffects();
+            }
+        }
+        
+        function addCrowdEffects() {
+            // Add some crowd symbols around buildings
+            const buildings = ['library', 'gym', 'cafeteria'];
+            for (let buildingName of buildings) {
+                const building = campus.buildings[buildingName];
+                if (Math.random() < 0.3) {
+                    const nearX = building.x + Math.floor(Math.random() * building.w);
+                    const nearY = building.y + Math.floor(Math.random() * building.h);
+                    const cell = document.getElementById(`cell-${nearX}-${nearY}`);
+                    if (cell && !cell.classList.contains('agent') && !cell.classList.contains('goal')) {
+                        cell.textContent = '👥';
+                    }
+                }
+            }
+        }
+        
+        function moveAgent(direction) {
+            const oldPos = {...gameState.agent};
+            
+            switch(direction) {
+                case 'north': gameState.agent.y = Math.max(0, gameState.agent.y - 1); break;
+                case 'south': gameState.agent.y = Math.min(15, gameState.agent.y + 1); break;
+                case 'east': gameState.agent.x = Math.min(15, gameState.agent.x + 1); break;
+                case 'west': gameState.agent.x = Math.max(0, gameState.agent.x - 1); break;
+                case 'stay': break;
+            }
+            
+            // Calculate reward
+            const oldDistance = Math.sqrt(Math.pow(gameState.goal.x - oldPos.x, 2) + Math.pow(gameState.goal.y - oldPos.y, 2));
+            const newDistance = Math.sqrt(Math.pow(gameState.goal.x - gameState.agent.x, 2) + Math.pow(gameState.goal.y - gameState.agent.y, 2));
+            
+            let reward = (oldDistance - newDistance) * 10;
+            
+            // Apply causal modifiers
+            if (gameState.causal.weather === 'rain') reward -= 0.1;
+            if (gameState.causal.weather === 'snow') reward -= 0.15;
+            if (gameState.causal.crowd_density >= 4) reward -= 0.2;
+            if (direction === 'stay') reward -= 0.01;
+            
+            // Goal bonus
+            if (newDistance < 2) reward += 100;
+            
+            gameState.totalReward += reward;
+            gameState.steps++;
+            
+            updateDisplay();
+            
+            // Check for goal reached
+            if (newDistance < 2) {
+                setTimeout(() => {
+                    alert('🎉 Goal Reached! Great job navigating through the causal effects!');
+                    resetEpisode();
+                }, 100);
+            }
+        }
+        
+        function updateTime() {
+            const timeValue = document.getElementById('timeSlider').value;
+            gameState.causal.time_hour = parseInt(timeValue);
+            document.getElementById('timeValue').textContent = `${timeValue.padStart(2, '0')}:00`;
+            updateDisplay();
+        }
+        
+        function updateWeather() {
+            gameState.causal.weather = document.getElementById('weatherSelect').value;
+            updateDisplay();
+        }
+        
+        function updateEvent() {
+            gameState.causal.event = document.getElementById('eventSelect').value;
+            updateDisplay();
+        }
+        
+        function updateCrowd() {
+            const crowdValue = document.getElementById('crowdSlider').value;
+            gameState.causal.crowd_density = parseInt(crowdValue);
+            const labels = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+            document.getElementById('crowdValue').textContent = `${labels[crowdValue-1]} (${crowdValue}/5)`;
+            updateDisplay();
+        }
+        
+        function loadPreset(preset) {
+            const presets = {
+                morning: {time_hour: 7, weather: 'sunny', event: 'normal', crowd_density: 1},
+                rainy: {time_hour: 14, weather: 'rain', event: 'normal', crowd_density: 3},
+                gameday: {time_hour: 18, weather: 'sunny', event: 'gameday', crowd_density: 5},
+                night: {time_hour: 22, weather: 'fog', event: 'normal', crowd_density: 1},
+                chaos: {time_hour: 20, weather: 'rain', event: 'gameday', crowd_density: 5}
+            };
+            
+            if (presets[preset]) {
+                gameState.causal = {...gameState.causal, ...presets[preset]};
+                
+                // Update controls
+                document.getElementById('timeSlider').value = gameState.causal.time_hour;
+                document.getElementById('weatherSelect').value = gameState.causal.weather;
+                document.getElementById('eventSelect').value = gameState.causal.event;
+                document.getElementById('crowdSlider').value = gameState.causal.crowd_density;
+                
+                updateTime();
+                updateCrowd();
+                updateDisplay();
+            }
+        }
+        
+        function resetEpisode() {
+            // Random new positions
+            gameState.agent = {x: Math.floor(Math.random() * 4) + 1, y: Math.floor(Math.random() * 4) + 12};
+            gameState.goal = {x: Math.floor(Math.random() * 6) + 3, y: Math.floor(Math.random() * 6) + 3};
+            gameState.totalReward = 0;
+            gameState.steps = 0;
+            
+            updateDisplay();
+        }
+        
+        function autoNavigate() {
+            gameState.autoMode = !gameState.autoMode;
+            const autoBtn = document.getElementById('autoBtn');
+            
+            if (gameState.autoMode) {
+                autoBtn.textContent = '⏹️ Stop';
+                autoBtn.style.background = '#e74c3c';
+                startAutoNavigation();
+            } else {
+                autoBtn.textContent = '🤖 Auto';
+                autoBtn.style.background = '#3498db';
+            }
+        }
+        
+        function startAutoNavigation() {
+            if (!gameState.autoMode) return;
+            
+            // Simple pathfinding toward goal
+            const dx = gameState.goal.x - gameState.agent.x;
+            const dy = gameState.goal.y - gameState.agent.y;
+            
+            let direction = 'stay';
+            if (Math.abs(dx) > Math.abs(dy)) {
+                direction = dx > 0 ? 'east' : 'west';
+            } else if (Math.abs(dy) > 0) {
+                direction = dy > 0 ? 'south' : 'north';
+            }
+            
+            moveAgent(direction);
+            
+            // Continue if still in auto mode
+            if (gameState.autoMode) {
+                setTimeout(startAutoNavigation, 800);
+            }
+        }
+        
+        // Keyboard controls
+        document.addEventListener('keydown', function(event) {
+            if (gameState.autoMode) return;
+            
+            switch(event.key) {
+                case 'ArrowUp':
+                case 'w':
+                case 'W':
+                    moveAgent('north');
+                    event.preventDefault();
+                    break;
+                case 'ArrowDown':
+                case 's':
+                case 'S':
+                    moveAgent('south');
+                    event.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    moveAgent('west');
+                    event.preventDefault();
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    moveAgent('east');
+                    event.preventDefault();
+                    break;
+                case ' ':
+                    moveAgent('stay');
+                    event.preventDefault();
+                    break;
+            }
+        });
+        
+        // Initialize
+        initializeGrid();
+        
+        // Welcome message
+        setTimeout(() => {
+            alert('🎮 Welcome to Interactive Causal Campus Navigation!\n\n' +
+                  '• Use WASD or arrow keys to move\n' +
+                  '• Change causal factors with the controls\n' +
+                  '• Try the preset scenarios\n' +
+                  '• Enable auto-navigation to watch AI behavior\n\n' +
+                  'See how weather, time, and events affect your navigation!');
+        }, 1000);
+    </script>
+</body>
+</html>

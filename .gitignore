@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Local development
+.env
+
+# Data and checkpoints
+data/logs/
+data/checkpoints/
+*.pth
+*.pt
+*.h5
+*.ckpt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Project specific
+CausalWorldModels/data/
+WorldModels/data/
+*.mp4
+*.gif
