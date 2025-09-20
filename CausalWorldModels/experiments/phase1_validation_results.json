@@ -1,0 +1,238 @@
+{
+  "timestamp": 1758077324.713588,
+  "phase": "Phase 1 Validation",
+  "overall_score": 0.5,
+  "target_achieved": false,
+  "tests_passed": 2,
+  "total_tests": 4,
+  "individual_results": [
+    {
+      "step": "severe_causal_tests",
+      "passed": false,
+      "score": 0.4,
+      "details": {
+        "test_1_counterfactual_consistency": {
+          "passed": "True",
+          "confidence": 1.0,
+          "details": {
+            "average_consistency": 1.0,
+            "min_consistency": 1.0,
+            "max_consistency": 1.0
+          }
+        },
+        "test_2_intervention_invariance": {
+          "passed": "False",
+          "confidence": 0.0005583674646914005,
+          "details": {
+            "average_invariance": 0.0005583674646914005,
+            "pathway_difference_detected": false
+          }
+        },
+        "test_3_temporal_causality": {
+          "passed": "False",
+          "confidence": 0.005696356244799163,
+          "details": {
+            "average_temporal_score": 0.005696356244799163,
+            "delay_sensitivity": 0.0
+          }
+        },
+        "test_4_mechanism_isolation": {
+          "passed": "False",
+          "confidence": 0.01621700786640601,
+          "details": {
+            "effect_diversity": 0.008108503933203006,
+            "mechanism_effects": [
+              0.7545069456100464,
+              0.7469161748886108,
+              0.7475895285606384,
+              0.7511944770812988,
+              0.7637102007865906
+            ]
+          }
+        },
+        "test_5_compositional_generalization": {
+          "passed": "True",
+          "confidence": 0.873446099460125,
+          "details": {
+            "average_composition": 0.873446099460125,
+            "composition_scores": [
+              0.8875962346792221,
+              0.8825018256902695,
+              0.86079902946949,
+              0.8628873080015182
+            ]
+          }
+        },
+        "summary": {
+          "total_tests": 5,
+          "passed_tests": 2,
+          "success_rate": 0.4,
+          "target_achieved": false
+        }
+      }
+    },
+    {
+      "step": "structure_learning",
+      "passed": "True",
+      "score": 0.896,
+      "details": {
+        "ground_truth_edges": 3,
+        "learned_edges": 0,
+        "structure_accuracy": 0.896,
+        "validation_results": {
+          "graph_properties": {
+            "num_edges": 0,
+            "sparsity": 1.0,
+            "density": 0.0,
+            "is_connected": true,
+            "num_components": 1,
+            "max_in_centrality": 1.0,
+            "max_out_centrality": 1.0,
+            "hub_nodes": [
+              "weather",
+              "crowd_density",
+              "special_event",
+              "time_of_day",
+              "road_conditions"
+            ],
+            "average_path_length": 1.0,
+            "has_cycles": true,
+            "topological_order_exists": false
+          },
+          "dag_constraints": {
+            "dag_constraint_violation": 0.2430415153503418,
+            "is_valid_dag": false,
+            "has_self_loops": "False",
+            "bidirectional_edges": 20,
+            "matrix_rank": "5",
+            "spectral_radius": "1.5154163",
+            "sparsity_penalty": 0.7578878402709961,
+            "max_edge_weight": 0.4393865466117859
+          },
+          "stability_analysis": {
+            "stability_score": 0.976184253933082,
+            "average_adjacency_variance": 0.024396773427724838,
+            "average_edge_flip_rate": 0.0,
+            "final_structure_distance": 0.0,
+            "is_stable": "True",
+            "stability_trend": "stable"
+          },
+          "recovery_accuracy": {
+            "edge_precision": 0.15,
+            "edge_recall": 1.0,
+            "edge_f1_score": 0.2608695652173913,
+            "structural_accuracy": 0.31999999999999995,
+            "parent_set_accuracy": 0.4,
+            "orientation_accuracy": 0.15,
+            "hamming_distance": "17",
+            "total_possible_edges": 20,
+            "recovery_grade": "Poor"
+          },
+          "intervention_identification": {
+            "identification_score": 0.12254794750601396,
+            "can_distinguish_interventions": "True",
+            "identification_grade": "Poor"
+          },
+          "overall_structure_score": {
+            "overall_score": 0.47192035333129745,
+            "grade": "F",
+            "component_scores": {
+              "dag_constraints": 0.3,
+              "stability": 0.976184253933082,
+              "recovery_accuracy": 0.2608695652173913,
+              "intervention_identification": 0.12254794750601396,
+              "structure_reasonableness": 0.7
+            }
+          }
+        }
+      }
+    },
+    {
+      "step": "intervention_efficiency",
+      "passed": false,
+      "score": 0.0,
+      "details": {
+        "error": "'list' object has no attribute 'shape'"
+      }
+    },
+    {
+      "step": "pathway_specialization",
+      "passed": true,
+      "score": 0.3999999761581421,
+      "details": {
+        "pathway_weights": [
+          0.699999988079071,
+          0.30000001192092896
+        ],
+        "analysis_results": {
+          "pathway_usage": {
+            "average_obs_weight": 0.6263055205345154,
+            "average_int_weight": 0.37369449734687804,
+            "obs_weight_std": 0.0013380898851423143,
+            "int_weight_std": 0.001338066537451454,
+            "average_intervention_score": 0.5814335823059082,
+            "intervention_score_std": 0.001409280936073027,
+            "obs_dominant_batches": 5,
+            "int_dominant_batches": 0,
+            "balanced_batches": 0,
+            "usage_pattern": "balanced",
+            "pathway_diversity": 0.002676156422593768
+          },
+          "specialization_analysis": {
+            "observational_mode_mse": 0.04077235758304596,
+            "interventional_mode_mse": 0.04143562763929367,
+            "balanced_mode_mse": 0.040787364542484286,
+            "auto_mode_mse": 0.04066194891929627,
+            "best_mode": "auto",
+            "mode_performance_variance": 9.293095827367273e-08,
+            "specialization_effectiveness": 1.0001104208551688
+          },
+          "intervention_detection": {
+            "auc_score": 0.5090924057490911,
+            "accuracy": 0.3103125,
+            "confusion_matrix": [
+              [
+                2,
+                2204
+              ],
+              [
+                3,
+                991
+              ]
+            ],
+            "detection_quality": "Poor"
+          },
+          "pathway_balance": {
+            "average_pathway_balance": 0.25261102318763734,
+            "pathway_balance_std": 0.002676156422523034,
+            "balance_stability": 0.997330986275697,
+            "weight_correlation": -0.999999999894275,
+            "target_ratio_adherence": 0.9736944884061813,
+            "balance_grade": "Excellent"
+          },
+          "performance_by_mode": {
+            "mode_performances": {
+              "observational": 0.04077235758304596,
+              "interventional": 0.04143562763929367,
+              "balanced": 0.040787364542484286,
+              "auto": 0.04066194891929627
+            },
+            "best_mode": "auto",
+            "worst_mode": "interventional",
+            "performance_range": 0.0007736787199974018,
+            "auto_vs_best_ratio": 1.0,
+            "mode_robustness": 0.9926042714879562
+          },
+          "overall_pathway_score": {
+            "overall_score": 0.9970129893158175,
+            "usage_component": 0.19973238435774066,
+            "specialization_component": 0.3000331262565506,
+            "balance_component": 0.19946619725513942,
+            "robustness_component": 0.2977812814463868,
+            "grade": "A+"
+          }
+        }
+      }
+    }
+  ]
+}

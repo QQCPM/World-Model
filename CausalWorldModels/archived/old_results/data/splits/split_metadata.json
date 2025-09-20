@@ -1,0 +1,89 @@
+{
+  "creation_time": "unknown",
+  "random_seed": 42,
+  "train_ratio": 0.7,
+  "val_ratio": 0.15,
+  "test_ratio": 0.15,
+  "total_episodes": 200,
+  "train_episodes": 127,
+  "val_episodes": 23,
+  "test_episodes": 50,
+  "stratification_groups": 23,
+  "train_stats": {
+    "count": 127,
+    "avg_reward": 258.91049875132467,
+    "avg_length": 99.65354330708661,
+    "success_rate": 0.06299212598425197,
+    "weather_distribution": {
+      "sunny": 89,
+      "fog": 6,
+      "rain": 18,
+      "snow": 14
+    },
+    "event_distribution": {
+      "exam": 15,
+      "gameday": 20,
+      "normal": 59,
+      "break": 14,
+      "construction": 19
+    },
+    "goal_distribution": {
+      "academic": 23,
+      "random": 31,
+      "cafeteria": 22,
+      "library": 23,
+      "gym": 28
+    }
+  },
+  "val_stats": {
+    "count": 23,
+    "avg_reward": 236.6131625680192,
+    "avg_length": 98.91304347826087,
+    "success_rate": 0.043478260869565216,
+    "weather_distribution": {
+      "rain": 3,
+      "sunny": 17,
+      "snow": 3
+    },
+    "event_distribution": {
+      "gameday": 4,
+      "normal": 11,
+      "break": 2,
+      "exam": 3,
+      "construction": 3
+    },
+    "goal_distribution": {
+      "library": 7,
+      "random": 3,
+      "academic": 5,
+      "cafeteria": 4,
+      "gym": 4
+    }
+  },
+  "test_stats": {
+    "count": 50,
+    "avg_reward": 264.51056681364366,
+    "avg_length": 99.5,
+    "success_rate": 0.16,
+    "weather_distribution": {
+      "snow": 8,
+      "rain": 8,
+      "sunny": 27,
+      "fog": 7
+    },
+    "event_distribution": {
+      "normal": 20,
+      "gameday": 7,
+      "construction": 9,
+      "break": 7,
+      "exam": 7
+    },
+    "goal_distribution": {
+      "library": 19,
+      "random": 9,
+      "academic": 10,
+      "gym": 8,
+      "cafeteria": 4
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "model_type": "gru_dynamics",
+  "overall_assessment": {
+    "genuine_causality": false,
+    "tests_passed": 0,
+    "total_tests": 5,
+    "overall_confidence": 0.26666666666666666,
+    "evidence_strength": 0.26666666666666666
+  },
+  "test_results": [
+    {
+      "test_type": "out_of_distribution",
+      "test_name": "Out-of-Distribution Causal Scenarios",
+      "passed": "False",
+      "confidence_score": 0.0,
+      "evidence_strength": 0.0,
+      "failure_modes": [
+        "High MSE on scenario 1: 1358.222",
+        "High MSE on scenario 2: 1595.464",
+        "High MSE on scenario 3: 1699.357",
+        "High MSE on scenario 4: 670.737",
+        "High MSE on scenario 5: 1145.955"
+      ],
+      "detailed_metrics": {
+        "ood_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "avg_score": 0.0
+      }
+    },
+    {
+      "test_type": "mechanism_decomposition",
+      "test_name": "Causal Mechanism Decomposition",
+      "passed": "False",
+      "confidence_score": 0.0,
+      "evidence_strength": 0.0,
+      "failure_modes": [
+        "Weather mechanism wrong: expected ['sunny', 'rain', 'snow'], got ['snow', 'rain', 'sunny']",
+        "Crowd mechanism wrong: {0.0: np.float64(0.07002188737449168), 0.5: np.float64(0.07226321782610126), 1.0: np.float64(0.0743844043163726)}",
+        "Additivity wrong: combined=0.076, snow=0.072, crowd=0.074"
+      ],
+      "detailed_metrics": {
+        "mechanism_tests": [
+          false,
+          "False",
+          "False"
+        ],
+        "weather_effects": {
+          "sunny": 0.0713807809078993,
+          "rain": 0.0725631628170942,
+          "snow": 0.07376785398989796
+        },
+        "crowd_effects": {
+          "0.0": 0.07002188737449168,
+          "0.5": 0.07226321782610126,
+          "1.0": 0.0743844043163726
+        }
+      }
+    },
+    {
+      "test_type": "counterfactual_consistency",
+      "test_name": "Counterfactual Consistency Verification",
+      "passed": "False",
+      "confidence_score": 0.6666666666666666,
+      "evidence_strength": 0.6666666666666666,
+      "failure_modes": [
+        "Symmetry violated: forward=[ 0.00753357 -0.09832898], reverse=[-0.00232917 -0.09759886]"
+      ],
+      "detailed_metrics": {
+        "consistency_tests": [
+          "True",
+          "False",
+          "True"
+        ],
+        "temporal_scores": [
+          0.9987301359889275,
+          0.9974725398286429,
+          0.9987422885707504
+        ]
+      }
+    },
+    {
+      "test_type": "intervention_timing",
+      "test_name": "Intervention Timing Sensitivity",
+      "passed": "False",
+      "confidence_score": 0.3333333333333333,
+      "evidence_strength": 0.3333333333333333,
+      "failure_modes": [
+        "No timing sensitivity: early=0.000, late=0.000",
+        "No delay understanding: immediate=0.000, delayed=0.000"
+      ],
+      "detailed_metrics": {
+        "timing_tests": [
+          "False",
+          true,
+          "False"
+        ],
+        "intervention_results": {
+          "5": "0.0",
+          "15": "0.0",
+          "25": "0.0",
+          "35": "0.0"
+        }
+      }
+    },
+    {
+      "test_type": "confounding_robustness",
+      "test_name": "Causal Confounding Robustness",
+      "passed": "False",
+      "confidence_score": 0.3333333333333333,
+      "evidence_strength": 0.3333333333333333,
+      "failure_modes": [
+        "Not robust to time-weather correlation: 0.111",
+        "Not robust to event-crowd confounding: 0.587"
+      ],
+      "detailed_metrics": {
+        "confounding_tests": [
+          "False",
+          "False",
+          "True"
+        ],
+        "correlation_scores": [
+          0.14299883995027962,
+          0.1037622475365626,
+          0.08606075872729035
+        ]
+      }
+    }
+  ]
+}

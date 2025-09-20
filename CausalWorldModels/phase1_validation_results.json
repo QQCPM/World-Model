@@ -1,0 +1,164 @@
+{
+  "timestamp": 1758128454.6667578,
+  "phase": "Phase 1 Validation",
+  "overall_score": 0.25,
+  "target_achieved": false,
+  "tests_passed": 1,
+  "total_tests": 4,
+  "individual_results": [
+    {
+      "step": "severe_causal_tests",
+      "passed": false,
+      "score": 0.4,
+      "details": {
+        "test_1_counterfactual_consistency": {
+          "passed": "True",
+          "confidence": 1.0,
+          "details": {
+            "average_consistency": 1.0,
+            "min_consistency": 1.0,
+            "max_consistency": 1.0
+          }
+        },
+        "test_2_intervention_invariance": {
+          "passed": false,
+          "confidence": 0.0,
+          "error": "'CounterfactualDynamicsWrapper' object has no attribute 'set_pathway_mode'"
+        },
+        "test_3_temporal_causality": {
+          "passed": "False",
+          "confidence": 0.014511808442572752,
+          "details": {
+            "average_temporal_score": 0.014511808442572752,
+            "delay_sensitivity": 0.0
+          }
+        },
+        "test_4_mechanism_isolation": {
+          "passed": "False",
+          "confidence": 0.07965751827530555,
+          "details": {
+            "effect_diversity": 0.039828759137652776,
+            "mechanism_effects": [
+              0.5049338936805725,
+              0.4735390543937683,
+              0.49247264862060547,
+              0.5039032101631165,
+              0.5349463820457458
+            ]
+          }
+        },
+        "test_5_compositional_generalization": {
+          "passed": "True",
+          "confidence": 0.8196828439831734,
+          "details": {
+            "average_composition": 0.8196828439831734,
+            "composition_scores": [
+              0.8188805431127548,
+              0.8189307898283005,
+              0.8223739117383957,
+              0.8185461312532425
+            ]
+          }
+        },
+        "summary": {
+          "total_tests": 5,
+          "passed_tests": 2,
+          "success_rate": 0.4,
+          "target_achieved": false
+        }
+      }
+    },
+    {
+      "step": "structure_learning",
+      "passed": "True",
+      "score": 0.6844656095504761,
+      "details": {
+        "ground_truth_edges": 3,
+        "learned_edges": 8,
+        "structure_accuracy": 0.6844656095504761,
+        "validation_results": {
+          "graph_properties": {
+            "num_edges": 8,
+            "sparsity": 0.6,
+            "density": 0.4,
+            "is_connected": true,
+            "num_components": 1,
+            "max_in_centrality": 1.0,
+            "max_out_centrality": 1.0,
+            "hub_nodes": [
+              "weather",
+              "crowd_density",
+              "special_event",
+              "time_of_day",
+              "road_conditions"
+            ],
+            "average_path_length": 1.0,
+            "has_cycles": true,
+            "topological_order_exists": false
+          },
+          "dag_constraints": {
+            "dag_constraint_violation": 0.2404947280883789,
+            "is_valid_dag": false,
+            "has_self_loops": "False",
+            "bidirectional_edges": 20,
+            "matrix_rank": "5",
+            "spectral_radius": "1.5122744",
+            "sparsity_penalty": 0.7561811804771423,
+            "max_edge_weight": 0.42181631922721863
+          },
+          "stability_analysis": {
+            "stability_score": 0.9763573133110401,
+            "average_adjacency_variance": 0.024215199053287506,
+            "average_edge_flip_rate": 0.0,
+            "final_structure_distance": 0.0,
+            "is_stable": "True",
+            "stability_trend": "stable"
+          },
+          "recovery_accuracy": {
+            "edge_precision": 0.15,
+            "edge_recall": 1.0,
+            "edge_f1_score": 0.2608695652173913,
+            "structural_accuracy": 0.31999999999999995,
+            "parent_set_accuracy": 0.4,
+            "orientation_accuracy": 0.15,
+            "hamming_distance": "17",
+            "total_possible_edges": 20,
+            "recovery_grade": "Poor"
+          },
+          "intervention_identification": {
+            "identification_score": 0.15756250015778087,
+            "can_distinguish_interventions": "True",
+            "identification_grade": "Poor"
+          },
+          "overall_structure_score": {
+            "overall_score": 0.47895787573724247,
+            "grade": "F",
+            "component_scores": {
+              "dag_constraints": 0.3,
+              "stability": 0.9763573133110401,
+              "recovery_accuracy": 0.2608695652173913,
+              "intervention_identification": 0.15756250015778087,
+              "structure_reasonableness": 0.7
+            }
+          }
+        }
+      }
+    },
+    {
+      "step": "intervention_efficiency",
+      "passed": false,
+      "score": 0.0,
+      "details": {
+        "error": "'list' object has no attribute 'shape'"
+      }
+    },
+    {
+      "step": "pathway_specialization",
+      "passed": false,
+      "score": 0.0,
+      "details": {
+        "error": "'CounterfactualDynamicsWrapper' object has no attribute 'pathway_weights'"
+      }
+    }
+  ]
+}

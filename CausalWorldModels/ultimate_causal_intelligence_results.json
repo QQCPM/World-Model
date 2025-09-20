@@ -1,0 +1,40 @@
+{
+  "timestamp": 1758131290.327353,
+  "test_type": "ultimate_causal_intelligence_challenge",
+  "overall_score": 0.2704582208286663,
+  "overall_grade": "C",
+  "overall_status": "\u274c INSUFFICIENT - Significant Development Required",
+  "elapsed_time": 0.004111051559448242,
+  "challenge_breakdown": {
+    "adversarial_domain_transfer": 0.0,
+    "dynamic_meta_reasoning": 0.0,
+    "extreme_temporal_chains": 0.2,
+    "integrated_counterfactuals": 0.3,
+    "compositional_understanding": 0.5337310184872339,
+    "ultimate_integration": 0.5890183064847635
+  },
+  "challenges_passed": 0,
+  "total_challenges": 6,
+  "pass_rate": 0.0,
+  "improvements": {
+    "adversarial_domain_transfer": -100.0,
+    "dynamic_meta_reasoning": -100.0,
+    "extreme_temporal_chains": -33.33333333333333,
+    "integrated_counterfactuals": 49.999999999999986,
+    "compositional_understanding": 255.82067899148927,
+    "ultimate_integration": 489.0183064847635
+  },
+  "average_improvement": 93.58427535715323,
+  "summary": {
+    "challenges_passed": "0/6",
+    "strongest_capability": [
+      "ultimate_integration",
+      0.5890183064847635
+    ],
+    "weakest_capability": [
+      "adversarial_domain_transfer",
+      0.0
+    ],
+    "causal_intelligence_level": "\u274c INSUFFICIENT - Significant Development Required"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "timestamp": 1758077718.586136,
+  "test_type": "extreme_causal_challenge",
+  "overall_score": 0.47786734978686946,
+  "overall_grade": "C",
+  "overall_status": "\u274c WEAK",
+  "elapsed_time": 0.8488929271697998,
+  "challenge_breakdown": {
+    "temporal_causal_chains": {
+      "score": 0.38211648166179657,
+      "grade": "C",
+      "status": "\u274c WEAK",
+      "passed": false
+    },
+    "confounding_adversarial": {
+      "score": 0.6541872620582581,
+      "grade": "B+",
+      "status": "\ud83d\udc4d GOOD",
+      "passed": false
+    },
+    "cross_domain_transfer": {
+      "score": 0.3652200749436356,
+      "grade": "C",
+      "status": "\u274c WEAK",
+      "passed": false
+    },
+    "mechanism_stress_test": {
+      "score": 0.7685744695274138,
+      "grade": "A",
+      "status": "\u2705 STRONG",
+      "passed": false
+    },
+    "counterfactual_reasoning": {
+      "score": 0.0,
+      "grade": "F",
+      "status": "\ud83d\udc80 FAILED",
+      "passed": false
+    },
+    "causal_invariance": {
+      "score": 0.3262920379638672,
+      "grade": "C",
+      "status": "\u274c WEAK",
+      "passed": false
+    },
+    "compositional_causality": {
+      "score": 0.9781520516611636,
+      "grade": "A+",
+      "status": "\ud83d\udd25 EXCEPTIONAL",
+      "passed": true
+    },
+    "meta_causal_reasoning": {
+      "score": 0.3483964204788208,
+      "grade": "C",
+      "status": "\u274c WEAK",
+      "passed": false
+    }
+  },
+  "summary": {
+    "challenges_passed": 1,
+    "total_challenges": 8,
+    "pass_rate": 0.125,
+    "strongest_capability": [
+      "compositional_causality",
+      0.9781520516611636
+    ],
+    "weakest_capability": [
+      "counterfactual_reasoning",
+      0.0
+    ],
+    "causal_understanding_level": "\ud83c\udf31 NOVICE: Basic causal patterns"
+  },
+  "recommendations": [
+    "Enhance temporal reasoning with longer sequence training"
+  ]
+}

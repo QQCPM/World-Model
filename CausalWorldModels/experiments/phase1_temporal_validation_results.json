@@ -1,0 +1,80 @@
+{
+  "timestamp": 1758058617.970506,
+  "total_tests": 7,
+  "passed_tests": 7,
+  "failed_tests": 0,
+  "success_rate": 1.0,
+  "delay_detection_rate": 0.7142857142857143,
+  "test_results": [
+    {
+      "test_name": "environment_initialization",
+      "passed": true,
+      "expected_value": 1.0,
+      "actual_value": 1.0,
+      "error_magnitude": 0.0,
+      "delay_detected": false,
+      "notes": "Both delay and non-delay environments initialize correctly"
+    },
+    {
+      "test_name": "backward_compatibility",
+      "passed": true,
+      "expected_value": 0.0,
+      "actual_value": 0.0,
+      "error_magnitude": 0.0,
+      "delay_detected": false,
+      "notes": "Weather difference in early timesteps: 0.0000"
+    },
+    {
+      "test_name": "weather_2timestep_delay",
+      "passed": true,
+      "expected_value": 0.1,
+      "actual_value": 0.6666666269302368,
+      "error_magnitude": 0.5666666030883789,
+      "delay_detected": true,
+      "notes": "Average delay in late steps: 0.667, delays detected: 1"
+    },
+    {
+      "test_name": "immediate_vs_delayed_comparison",
+      "passed": true,
+      "expected_value": 0.2,
+      "actual_value": 0.6666666269302368,
+      "error_magnitude": 0.46666663885116577,
+      "delay_detected": true,
+      "notes": "Average difference between immediate and delayed: 0.667"
+    },
+    {
+      "test_name": "multiplicative_composition",
+      "passed": true,
+      "expected_value": 1.0,
+      "actual_value": 1.0,
+      "error_magnitude": 0.0,
+      "delay_detected": true,
+      "notes": "Multiplicative composition preserved with temporal delays"
+    },
+    {
+      "test_name": "runtime_delay_control",
+      "passed": true,
+      "expected_value": 1.0,
+      "actual_value": 1.0,
+      "error_magnitude": 0.0,
+      "delay_detected": true,
+      "notes": "Runtime control: True -> False -> True"
+    },
+    {
+      "test_name": "validation_reporting",
+      "passed": true,
+      "expected_value": 1.0,
+      "actual_value": 1.0,
+      "error_magnitude": 0.0,
+      "delay_detected": true,
+      "notes": "Report available: True, complete: True"
+    }
+  ],
+  "research_compliance": {
+    "weather_2timestep_delay": true,
+    "backward_compatibility": true,
+    "multiplicative_composition": true,
+    "runtime_control": true
+  },
+  "phase1_requirements_met": true
+}

@@ -1,0 +1,65 @@
+{
+  "overall_score": 0.5,
+  "grade": "C",
+  "status": "\u26a0\ufe0f WEAK - Limited counterfactual reasoning",
+  "individual_tests": {
+    "test_1": {
+      "score": 1.0,
+      "details": {
+        "setup_errors": [],
+        "factual_generated": true,
+        "counterfactual_generated": true,
+        "model_functional": true,
+        "prediction_differences": [
+          0.0031593432649970055
+        ],
+        "consistency_scores": [],
+        "prediction_method": "standard_forward",
+        "counterfactual_prediction_successful": true
+      },
+      "passed": true
+    },
+    "test_2": {
+      "score": 0.0,
+      "details": {
+        "generator_functional": false,
+        "generation_attempts": 1,
+        "successful_generations": 0,
+        "generation_errors": [
+          "'type'"
+        ]
+      },
+      "passed": false
+    },
+    "test_3": {
+      "score": 0.5,
+      "details": {
+        "model_type": "CounterfactualDynamicsWrapper",
+        "missing_methods": [
+          "get_adjacency_matrix",
+          "predict_single"
+        ],
+        "working_methods": [
+          "forward",
+          "set_pathway_mode",
+          "pathway_weights"
+        ],
+        "interface_issues": [],
+        "missing_attributes": [
+          "state_dim",
+          "action_dim",
+          "causal_dim"
+        ],
+        "working_attributes": [
+          "pathway_weights",
+          "base_model"
+        ],
+        "interface_health": 0.5,
+        "total_issues": 5
+      },
+      "passed": false
+    }
+  },
+  "setup_errors": [],
+  "timestamp": 1758227754.317357
+}

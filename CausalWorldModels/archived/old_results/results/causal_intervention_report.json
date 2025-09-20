@@ -1,0 +1,206 @@
+{
+  "model_type": "gru_dynamics",
+  "model_path": "models/gru_dynamics_best.pth",
+  "model_info": {
+    "name": "gru_dynamics",
+    "parameters": 18797,
+    "architecture": "GRUDynamics(\n  (gru): GRU(19, 64, batch_first=True)\n  (output_layers): Sequential(\n    (0): Linear(in_features=64, out_features=32, bias=True)\n    (1): Tanh()\n    (2): Linear(in_features=32, out_features=12, bias=True)\n  )\n)",
+    "device": "mps:0",
+    "dtype": "torch.float32"
+  },
+  "test_timestamp": "2025-09-16T03:39:42",
+  "summary_statistics": {
+    "weather_change": {
+      "num_tests": 6,
+      "avg_adaptation_rate": 0.0,
+      "avg_coherence_score": "0.997106",
+      "model_physics_alignment": "0.997106",
+      "causal_understanding_level": "EXCELLENT"
+    },
+    "factor_ablation": {
+      "num_tests": 4,
+      "avg_adaptation_rate": "8948.36",
+      "avg_coherence_score": 0.8372148039440314,
+      "model_physics_alignment": 0.8372148039440314,
+      "causal_understanding_level": "EXCELLENT"
+    }
+  },
+  "overall_assessment": {
+    "overall_coherence_score": 0.9331495190660158,
+    "causal_reasoning_level": "ADVANCED CAUSAL REASONING",
+    "production_ready": "True",
+    "scientific_validity": "True"
+  },
+  "detailed_results": [
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.WEATHER_CHANGE",
+        "target_factor": "weather",
+        "intervention_timestep": 20,
+        "original_value": "sunny",
+        "intervention_value": "rain",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.002492421",
+      "post_intervention_mse": "39.05456",
+      "adaptation_rate": 0.0,
+      "causal_effect_magnitude": "630.18726",
+      "model_prediction_shift": "630.18726",
+      "physics_prediction_shift": "629.65857",
+      "coherence_score": "0.99808574"
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.WEATHER_CHANGE",
+        "target_factor": "weather",
+        "intervention_timestep": 20,
+        "original_value": "sunny",
+        "intervention_value": "snow",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.0014915556",
+      "post_intervention_mse": "21.050356",
+      "adaptation_rate": 0.0,
+      "causal_effect_magnitude": "337.7039",
+      "model_prediction_shift": "337.7039",
+      "physics_prediction_shift": "337.1012",
+      "coherence_score": "0.99268293"
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.WEATHER_CHANGE",
+        "target_factor": "weather",
+        "intervention_timestep": 20,
+        "original_value": "rain",
+        "intervention_value": "sunny",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.001628268",
+      "post_intervention_mse": "35.772793",
+      "adaptation_rate": 0.0,
+      "causal_effect_magnitude": "579.0855",
+      "model_prediction_shift": "579.0855",
+      "physics_prediction_shift": "577.9721",
+      "coherence_score": "0.9981411"
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.WEATHER_CHANGE",
+        "target_factor": "weather",
+        "intervention_timestep": 20,
+        "original_value": "rain",
+        "intervention_value": "snow",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.00077853794",
+      "post_intervention_mse": "27.75796",
+      "adaptation_rate": 0.0,
+      "causal_effect_magnitude": "447.84836",
+      "model_prediction_shift": "447.84836",
+      "physics_prediction_shift": "446.0314",
+      "coherence_score": "0.9964699"
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.WEATHER_CHANGE",
+        "target_factor": "weather",
+        "intervention_timestep": 20,
+        "original_value": "snow",
+        "intervention_value": "sunny",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.00065728906",
+      "post_intervention_mse": "18.137758",
+      "adaptation_rate": 0.0,
+      "causal_effect_magnitude": "281.98352",
+      "model_prediction_shift": "281.98352",
+      "physics_prediction_shift": "282.32584",
+      "coherence_score": "0.99880314"
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.WEATHER_CHANGE",
+        "target_factor": "weather",
+        "intervention_timestep": 20,
+        "original_value": "snow",
+        "intervention_value": "rain",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.0039758063",
+      "post_intervention_mse": "24.620153",
+      "adaptation_rate": 0.0,
+      "causal_effect_magnitude": "398.03183",
+      "model_prediction_shift": "398.03183",
+      "physics_prediction_shift": "397.4923",
+      "coherence_score": "0.99845314"
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.FACTOR_ABLATION",
+        "target_factor": "weather",
+        "intervention_timestep": 0,
+        "original_value": "active",
+        "intervention_value": "ablated",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.008959704",
+      "post_intervention_mse": "0.009193254",
+      "adaptation_rate": "13262.2295",
+      "causal_effect_magnitude": "0.00013262228",
+      "model_prediction_shift": "0.00013262228",
+      "physics_prediction_shift": "0.0",
+      "coherence_score": 1.0
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.FACTOR_ABLATION",
+        "target_factor": "event",
+        "intervention_timestep": 0,
+        "original_value": "active",
+        "intervention_value": "ablated",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.002676401",
+      "post_intervention_mse": "0.0022577832",
+      "adaptation_rate": "17936.121",
+      "causal_effect_magnitude": "0.0001793612",
+      "model_prediction_shift": "0.0001793612",
+      "physics_prediction_shift": "0.0",
+      "coherence_score": 0.6666666666666666
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.FACTOR_ABLATION",
+        "target_factor": "crowd_density",
+        "intervention_timestep": 0,
+        "original_value": "active",
+        "intervention_value": "ablated",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.007014586",
+      "post_intervention_mse": "0.00752579",
+      "adaptation_rate": "3500.454",
+      "causal_effect_magnitude": "3.500454e-05",
+      "model_prediction_shift": "3.500454e-05",
+      "physics_prediction_shift": "0.0",
+      "coherence_score": 0.6821925491094589
+    },
+    {
+      "intervention_spec": {
+        "intervention_type": "InterventionType.FACTOR_ABLATION",
+        "target_factor": "time_hour",
+        "intervention_timestep": 0,
+        "original_value": "active",
+        "intervention_value": "ablated",
+        "duration": -1
+      },
+      "pre_intervention_mse": "0.0024618814",
+      "post_intervention_mse": "0.0025419444",
+      "adaptation_rate": "1094.6354",
+      "causal_effect_magnitude": "1.0946354e-05",
+      "model_prediction_shift": "1.0946354e-05",
+      "physics_prediction_shift": "0.0",
+      "coherence_score": 1.0
+    }
+  ]
+}

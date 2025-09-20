@@ -1,0 +1,47 @@
+{
+  "overall_score": 0.27777777777777773,
+  "grade": "F",
+  "status": "\ud83d\udc80 FAILED - No reliable temporal integration",
+  "individual_tests": {
+    "test_1": {
+      "score": 0.3333333333333333,
+      "details": {
+        "scenario_results": {
+          "Normal Campus": {
+            "avg_delay_difference": 0.0,
+            "delay_variance": 0.0,
+            "delay_consistency": 1.0,
+            "avg_delay_during_changes": 0.0,
+            "weather_changes_detected": 98,
+            "sequence_length": 100
+          },
+          "High Crowd Density": {
+            "avg_delay_difference": 0.0,
+            "delay_variance": 0.0,
+            "delay_consistency": 1.0,
+            "avg_delay_during_changes": 0.0,
+            "weather_changes_detected": 98,
+            "sequence_length": 100
+          },
+          "Low Activity": {
+            "avg_delay_difference": 0.0,
+            "delay_variance": 0.0,
+            "delay_consistency": 1.0,
+            "avg_delay_during_changes": 0.0,
+            "weather_changes_detected": 98,
+            "sequence_length": 100
+          },
+          "Construction Zone": {
+            "avg_delay_difference": 0.0,
+            "delay_variance": 0.0,
+            "delay_consistency": 1.0,
+            "avg_delay_during_changes": 0.0,
+            "weather_changes_detected": 98,
+            "sequence_length": 100
+          }
+        },
+        "cross_scenario_consistency": 1.0,
+        "average_consistency": 1.0,
+        "overall_delay_detection": 0.0
+      },
+      "passed": 

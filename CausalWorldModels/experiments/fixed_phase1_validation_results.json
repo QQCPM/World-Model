@@ -1,0 +1,168 @@
+{
+  "timestamp": 1758063956.8287182,
+  "tests": {
+    "severe_tests": {
+      "passed": false,
+      "details": {
+        "test_timestamp": 1758063957.590942,
+        "model_info": {
+          "dynamics_model_params": 11022,
+          "structure_learner_params": 5367,
+          "total_parameters": 16389,
+          "training_epochs": 0
+        },
+        "severe_validation": {
+          "test_1_counterfactual_consistency": {
+            "passed": "True",
+            "confidence": 1.0,
+            "details": {
+              "average_consistency": 1.0,
+              "min_consistency": 1.0,
+              "max_consistency": 1.0
+            }
+          },
+          "test_2_intervention_invariance": {
+            "passed": "False",
+            "confidence": 0.001065245596691966,
+            "details": {
+              "average_invariance": 0.001065245596691966,
+              "pathway_difference_detected": false
+            }
+          },
+          "test_3_temporal_causality": {
+            "passed": false,
+            "confidence": 0.0,
+            "error": "The size of tensor a (20) must match the size of tensor b (19) at non-singleton dimension 1"
+          },
+          "test_4_mechanism_isolation": {
+            "passed": "False",
+            "confidence": 0.006276854863650523,
+            "details": {
+              "effect_diversity": 0.0031384274318252614,
+              "mechanism_effects": [
+                1.6283199787139893,
+                1.630759835243225,
+                1.635895848274231,
+                1.6269372701644897,
+                1.640763521194458
+              ]
+            }
+          },
+          "test_5_compositional_generalization": {
+            "passed": "True",
+            "confidence": 0.7666606344282627,
+            "details": {
+              "average_composition": 0.7666606344282627,
+              "composition_scores": [
+                0.7688166350126266,
+                0.775162398815155,
+                0.7741631865501404,
+                0.7485003173351288
+              ]
+            }
+          },
+          "summary": {
+            "total_tests": 5,
+            "passed_tests": 2,
+            "success_rate": 0.4,
+            "target_achieved": false
+          }
+        },
+        "structure_tests": {
+          "graph_properties": {
+            "num_edges": 0,
+            "sparsity": 1.0,
+            "density": 0.0
+          },
+          "stability": {
+            "dag_constraint_violation": 0.22733640670776367,
+            "is_stable": "False"
+          }
+        },
+        "mechanism_tests": {
+          "individual_mechanisms": {
+            "weather": {
+              "effect_magnitude": 4.247392177581787,
+              "effect_variance": 0.05698975548148155
+            },
+            "crowd": {
+              "effect_magnitude": 3.452591896057129,
+              "effect_variance": 0.03738420829176903
+            },
+            "event": {
+              "effect_magnitude": 4.688852310180664,
+              "effect_variance": 0.07152874022722244
+            },
+            "time": {
+              "effect_magnitude": 4.6741461753845215,
+              "effect_variance": 0.06905550509691238
+            },
+            "road": {
+              "effect_magnitude": 4.0463056564331055,
+              "effect_variance": 0.05196996405720711
+            }
+          }
+        },
+        "intervention_tests": {
+          "best_intervention": {
+            "target_variables": [
+              "special_event"
+            ],
+            "expected_gain": 0.5318785309791565,
+            "acquisition_score": 0.5318779945373535
+          },
+          "top_recommendations": [
+            {
+              "rank": 1,
+              "variables": [
+                "special_event"
+              ],
+              "expected_gain": 0.5318785309791565,
+              "feasibility": "tensor(1.)"
+            },
+            {
+              "rank": 2,
+              "variables": [
+                "special_event"
+              ],
+              "expected_gain": 0.5318785309791565,
+              "feasibility": "tensor(1.)"
+            },
+            {
+              "rank": 3,
+              "variables": [
+                "special_event"
+              ],
+              "expected_gain": 0.5318785309791565,
+              "feasibility": "tensor(1.)"
+            }
+          ]
+        },
+        "generalization_tests": {
+          "noise_robustness": {
+            "noise_0.0": 0.9782189543983001,
+            "noise_0.1": 0.9782474983941495,
+            "noise_0.2": 0.9781689663139437,
+            "noise_0.3": 0.9782743434620832
+          },
+          "generalization_score": 1.0000115669316239
+        },
+        "overall_scores": {
+          "severe_validation_score": 0.4,
+          "structure_learning_score": 0.5,
+          "generalization_score": 1.0000115669316239,
+          "overall_causal_reasoning_score": 0.5500023133863248,
+          "grade": "C+"
+        }
+      }
+    },
+    "intervention_efficiency": {
+      "passed": true
+    },
+    "structure_learning": {
+      "passed": true
+    }
+  },
+  "overall_score": 0.6666666666666666,
+  "target_achieved": true
+}
