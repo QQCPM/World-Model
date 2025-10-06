@@ -1,13 +1,13 @@
-# 🎯 CAUSAL ARCHITECTURE IMPLEMENTATION PLAN
+# CAUSAL ARCHITECTURE IMPLEMENTATION PLAN
 ## Research-Validated Dual-Pathway System for Genuine Causal Reasoning
 
 **Project**: Transform continuous campus system from pattern-matching to genuine causal reasoning
-**Target**: 0/5 → 4/5+ severe validation tests
+**Target**: 0/5 4/5+ severe validation tests
 **Approach**: Research-validated dual-pathway architecture with active structure learning
 
 ---
 
-## 🏗️ PHASE 1: DUAL-PATHWAY ARCHITECTURE FOUNDATION (Weeks 1-2)
+## PHASE 1: DUAL-PATHWAY ARCHITECTURE FOUNDATION (Weeks 1-2)
 
 ### 1.1 Two-Pathway GRU Architecture (RESEARCH-VALIDATED)
 
@@ -18,17 +18,17 @@
 **Architecture**:
 ```python
 class DualPathwayCausalGRU(nn.Module):
-    def __init__(self, state_dim=12, action_dim=2, causal_dim=5, hidden_dim=64):
-        # Observational pathway: normal dynamics learning
-        self.observational_gru = nn.GRU(input_size=19, hidden_size=64)
+def __init__(self, state_dim=12, action_dim=2, causal_dim=5, hidden_dim=64):
+# Observational pathway: normal dynamics learning
+self.observational_gru = nn.GRU(input_size=19, hidden_size=64)
 
-        # Interventional pathway: do-operations only
-        self.interventional_gru = nn.GRU(input_size=19, hidden_size=64)
+# Interventional pathway: do-operations only
+self.interventional_gru = nn.GRU(input_size=19, hidden_size=64)
 
-        # Shared output layers (preserve proven architecture)
-        self.output_layers = nn.Sequential(
-            nn.Linear(64, 32), nn.Tanh(), nn.Linear(32, 12)
-        )
+# Shared output layers (preserve proven architecture)
+self.output_layers = nn.Sequential(
+nn.Linear(64, 32), nn.Tanh(), nn.Linear(32, 12)
+)
 ```
 
 **Integration**: Replace current GRUDynamics while maintaining 0.003556 MSE performance baseline
@@ -42,10 +42,10 @@ class DualPathwayCausalGRU(nn.Module):
 **Purpose**: Learn causal graph structure from data (don't assume it's known)
 ```python
 class CausalStructureLearner(nn.Module):
-    def __init__(self, num_variables=5):  # weather, crowd, event, time, road
-        # Learnable adjacency matrix with NOTEARS DAG constraints
-        self.adjacency_logits = nn.Parameter(torch.randn(5, 5) * 0.1)
-        self.notears_constraint = NOTEARSConstraint()
+def __init__(self, num_variables=5): # weather, crowd, event, time, road
+# Learnable adjacency matrix with NOTEARS DAG constraints
+self.adjacency_logits = nn.Parameter(torch.randn(5, 5) * 0.1)
+self.notears_constraint = NOTEARSConstraint()
 ```
 
 ### 1.3 Conservative Training Curriculum (RESEARCH-CORRECTED)
@@ -60,7 +60,7 @@ class CausalStructureLearner(nn.Module):
 
 ---
 
-## 🔬 PHASE 2: CAUSAL DISCOVERY INTEGRATION (Weeks 2-3)
+## PHASE 2: CAUSAL DISCOVERY INTEGRATION (Weeks 2-3)
 
 ### 2.1 Joint Structure-Dynamics Learning
 
@@ -70,10 +70,10 @@ class CausalStructureLearner(nn.Module):
 **Architecture**: Simultaneously learn causal graph + dynamics
 ```python
 class JointCausalLearner(nn.Module):
-    def __init__(self):
-        self.structure_learner = CausalStructureLearner()     # Graph learning
-        self.dynamics_learner = DualPathwayCausalGRU()        # Dynamics learning
-        self.causal_mechanisms = nn.ModuleDict()              # Physics mechanisms
+def __init__(self):
+self.structure_learner = CausalStructureLearner() # Graph learning
+self.dynamics_learner = DualPathwayCausalGRU() # Dynamics learning
+self.causal_mechanisms = nn.ModuleDict() # Physics mechanisms
 ```
 
 ### 2.2 Active Intervention Selection
@@ -85,9 +85,9 @@ class JointCausalLearner(nn.Module):
 **Purpose**: Select most informative interventions for causal learning
 ```python
 def select_next_intervention(self, current_graph, uncertainty_estimates):
-    # Compute expected information gain for each intervention
-    # Select intervention with highest expected information gain
-    return best_intervention
+# Compute expected information gain for each intervention
+# Select intervention with highest expected information gain
+return best_intervention
 ```
 
 ### 2.3 Structure-Aware Counterfactual Generation
@@ -98,14 +98,14 @@ def select_next_intervention(self, current_graph, uncertainty_estimates):
 **Purpose**: Generate counterfactuals respecting learned causal structure
 ```python
 def generate_counterfactual(self, base_episode, intervention_spec, causal_graph):
-    # Identify causal dependencies from learned graph
-    # Propagate effects through causal structure
-    return counterfactual_episode
+# Identify causal dependencies from learned graph
+# Propagate effects through causal structure
+return counterfactual_episode
 ```
 
 ---
 
-## 🧪 PHASE 3: INTEGRATED VALIDATION FRAMEWORK (Week 3-4)
+## PHASE 3: INTEGRATED VALIDATION FRAMEWORK (Week 3-4)
 
 ### 3.1 Structure Learning Validation
 
@@ -138,7 +138,7 @@ def generate_counterfactual(self, base_episode, intervention_spec, causal_graph)
 
 ---
 
-## 🚀 PHASE 4: PRODUCTION SYSTEM (Week 4)
+## PHASE 4: PRODUCTION SYSTEM (Week 4)
 
 ### 4.1 Integrated Inference Server
 
@@ -165,7 +165,7 @@ def generate_counterfactual(self, base_episode, intervention_spec, causal_graph)
 
 ---
 
-## 📊 SUCCESS METRICS & TARGETS
+## SUCCESS METRICS & TARGETS
 
 ### Quantitative Targets
 
@@ -196,7 +196,7 @@ def generate_counterfactual(self, base_episode, intervention_spec, causal_graph)
 
 ---
 
-## 🛡️ RISK MITIGATION STRATEGIES
+## RISK MITIGATION STRATEGIES
 
 ### Primary Risk: Model Collapse (70% Counterfactual)
 - **Mitigation**: Conservative 60/40 ratio maintained throughout
@@ -212,44 +212,44 @@ def generate_counterfactual(self, base_episode, intervention_spec, causal_graph)
 
 ---
 
-## 📁 COMPLETE FILE STRUCTURE
+## COMPLETE FILE STRUCTURE
 
 ```
 CausalWorldModels/
-├── causal_architectures/
-│   ├── __init__.py
-│   ├── dual_pathway_gru.py         # Main dual-pathway architecture
-│   ├── structure_learner.py        # NOTEARS-based causal discovery
-│   ├── intervention_designer.py    # Active learning component
-│   ├── causal_mechanisms.py        # Physics mechanism modules
-│   └── notears_constraints.py      # DAG constraint implementation
-├── training/
-│   ├── __init__.py
-│   ├── joint_causal_trainer.py     # Integrated training pipeline
-│   ├── counterfactual_generator.py # Structure-aware CF generation
-│   ├── causal_loss_functions.py    # Combined loss functions
-│   └── training_curriculum.py      # Conservative curriculum manager
-├── validation/
-│   ├── __init__.py
-│   ├── structure_validator.py      # Graph learning tests
-│   ├── causal_reasoner_tester.py   # Enhanced severe validation
-│   ├── active_learning_metrics.py  # Intervention efficiency tests
-│   └── pathway_analysis.py         # Dual-pathway performance analysis
-├── production/
-│   ├── __init__.py
-│   ├── causal_inference_server.py  # API with structure explanations
-│   ├── complete_causal_demo.py     # Integrated system demo
-│   └── causal_explainer.py         # Mechanism interpretation utilities
-└── utils/
-    ├── __init__.py
-    ├── graph_utilities.py          # Causal graph manipulation
-    ├── intervention_utilities.py   # Intervention specification helpers
-    └── physics_integration.py      # PyMunk parameter modification
+causal_architectures/
+__init__.py
+dual_pathway_gru.py # Main dual-pathway architecture
+structure_learner.py # NOTEARS-based causal discovery
+intervention_designer.py # Active learning component
+causal_mechanisms.py # Physics mechanism modules
+notears_constraints.py # DAG constraint implementation
+training/
+__init__.py
+joint_causal_trainer.py # Integrated training pipeline
+counterfactual_generator.py # Structure-aware CF generation
+causal_loss_functions.py # Combined loss functions
+training_curriculum.py # Conservative curriculum manager
+validation/
+__init__.py
+structure_validator.py # Graph learning tests
+causal_reasoner_tester.py # Enhanced severe validation
+active_learning_metrics.py # Intervention efficiency tests
+pathway_analysis.py # Dual-pathway performance analysis
+production/
+__init__.py
+causal_inference_server.py # API with structure explanations
+complete_causal_demo.py # Integrated system demo
+causal_explainer.py # Mechanism interpretation utilities
+utils/
+__init__.py
+graph_utilities.py # Causal graph manipulation
+intervention_utilities.py # Intervention specification helpers
+physics_integration.py # PyMunk parameter modification
 ```
 
 ---
 
-## 🎯 IMPLEMENTATION TIMELINE
+## IMPLEMENTATION TIMELINE
 
 ### Week 1: Dual-Pathway Foundation
 - **Day 1-2**: DualPathwayCausalGRU implementation
@@ -273,13 +273,13 @@ CausalWorldModels/
 
 ---
 
-## ✅ RESEARCH VALIDATION
+## RESEARCH VALIDATION
 
 **All Components Research-Backed**:
-- ✅ Two-pathway architecture (SENA-VAE, GraCE-VAE 2024)
-- ✅ Active structure learning (Nature Machine Intelligence 2023)
-- ✅ Conservative training (Variation Theory 2024)
-- ✅ NOTEARS integration (CL-NOTEARS 2024)
+- Two-pathway architecture (SENA-VAE, GraCE-VAE 2024)
+- Active structure learning (Nature Machine Intelligence 2023)
+- Conservative training (Variation Theory 2024)
+- NOTEARS integration (CL-NOTEARS 2024)
 
 **Expected Impact**:
 - **Architecture**: Conservative, proven approach avoiding overengineering

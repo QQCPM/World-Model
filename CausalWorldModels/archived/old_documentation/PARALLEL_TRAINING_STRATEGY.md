@@ -1,22 +1,22 @@
 # PARALLEL TRAINING STRATEGY - 5 CONTINUOUS ARCHITECTURES
 
-## 🎯 **DECISION: TRAIN 5 CONTINUOUS MODELS ONLY**
+## **DECISION: TRAIN 5 CONTINUOUS MODELS ONLY**
 
-### **✅ ARCHITECTURES TO TRAIN:**
+### ** ARCHITECTURES TO TRAIN:**
 1. **LinearDynamics** - Simple baseline (fast training)
 2. **LSTMPredictor** - Temporal modeling (medium training)
 3. **GRUDynamics** - Lightweight recurrent (medium training)
 4. **NeuralODE** - Continuous-time dynamics (slow training)
 5. **VAERNNHybrid** - Latent space dynamics (slow training)
 
-### **❌ OLD VISUAL MODELS EXCLUDED:**
+### ** OLD VISUAL MODELS EXCLUDED:**
 - **Reason**: Architecturally incompatible with 12D continuous data
 - **Evidence**: Expect (64,64,3) input, we have (12,) continuous states
 - **Paradigm**: Wrong algorithm for continuous control problem
 
 ---
 
-## 🚀 **PARALLEL TRAINING GROUPS**
+## **PARALLEL TRAINING GROUPS**
 
 ### **GROUP A: FAST MODELS (Parallel)**
 - **LinearDynamics**
@@ -35,51 +35,51 @@
 
 ---
 
-## 📊 **TRAINING CONFIGURATION**
+## **TRAINING CONFIGURATION**
 
 ### **Hyperparameters (Standardized)**
 ```python
 STANDARD_CONFIG = {
-    'epochs': 50,
-    'batch_size': 32,
-    'sequence_length': 20,
-    'learning_rate': 1e-3,
-    'patience': 15,
-    'hidden_dim': 128
+'epochs': 50,
+'batch_size': 32,
+'sequence_length': 20,
+'learning_rate': 1e-3,
+'patience': 15,
+'hidden_dim': 128
 }
 ```
 
 ### **Model-Specific Adjustments**
 ```python
 MODEL_CONFIGS = {
-    'linear_dynamics': {
-        'epochs': 30,          # Simpler model, converges faster
-        'hidden_dim': 64       # Smaller capacity needed
-    },
-    'gru_dynamics': {
-        'epochs': 40,          # Standard RNN training
-        'hidden_dim': 96       # Lightweight
-    },
-    'lstm_predictor': {
-        'epochs': 60,          # More complex temporal modeling
-        'hidden_dim': 128      # Standard capacity
-    },
-    'neural_ode': {
-        'epochs': 80,          # Continuous dynamics need more training
-        'learning_rate': 5e-4,  # More stable for ODE integration
-        'batch_size': 16       # Lower batch size for memory
-    },
-    'vae_rnn_hybrid': {
-        'epochs': 70,          # VAE + RNN combination
-        'learning_rate': 5e-4,  # Stable for VAE training
-        'hidden_dim': 64       # Balance VAE and RNN components
-    }
+'linear_dynamics': {
+'epochs': 30, # Simpler model, converges faster
+'hidden_dim': 64 # Smaller capacity needed
+},
+'gru_dynamics': {
+'epochs': 40, # Standard RNN training
+'hidden_dim': 96 # Lightweight
+},
+'lstm_predictor': {
+'epochs': 60, # More complex temporal modeling
+'hidden_dim': 128 # Standard capacity
+},
+'neural_ode': {
+'epochs': 80, # Continuous dynamics need more training
+'learning_rate': 5e-4, # More stable for ODE integration
+'batch_size': 16 # Lower batch size for memory
+},
+'vae_rnn_hybrid': {
+'epochs': 70, # VAE + RNN combination
+'learning_rate': 5e-4, # Stable for VAE training
+'hidden_dim': 64 # Balance VAE and RNN components
+}
 }
 ```
 
 ---
 
-## ⚡ **EXECUTION PLAN**
+## **EXECUTION PLAN**
 
 ### **PHASE 1: PARALLEL FAST TRAINING (30 minutes)**
 ```bash
@@ -104,7 +104,7 @@ python 05_train_continuous_models.py --model_type vae_rnn_hybrid --epochs 70 --l
 
 ---
 
-## 🔄 **TRAINING MONITORING**
+## **TRAINING MONITORING**
 
 ### **Real-time Progress Tracking**
 ```bash
@@ -128,7 +128,7 @@ watch -n 10 'ls -la models/*_best.pth | wc -l'
 
 ---
 
-## 📈 **RESOURCE OPTIMIZATION**
+## **RESOURCE OPTIMIZATION**
 
 ### **Memory Management**
 - **Group A**: Can run parallel (low memory each)
@@ -144,7 +144,7 @@ watch -n 10 'ls -la models/*_best.pth | wc -l'
 
 ---
 
-## 🎯 **POST-TRAINING EVALUATION**
+## **POST-TRAINING EVALUATION**
 
 ### **Model Comparison Metrics**
 - **Test MSE**: State prediction accuracy
@@ -161,7 +161,7 @@ watch -n 10 'ls -la models/*_best.pth | wc -l'
 
 ---
 
-## 🔬 **SCIENTIFIC VALUE**
+## **SCIENTIFIC VALUE**
 
 ### **Ablation Study Design**
 - **Linear vs Nonlinear**: LinearDynamics vs others
@@ -177,16 +177,16 @@ All models trained with same causal integration to compare:
 
 ---
 
-## 🚦 **EXECUTION READINESS CHECKLIST**
+## **EXECUTION READINESS CHECKLIST**
 
-### **Prerequisites Verified ✅**
+### **Prerequisites Verified **
 - [x] 200 continuous episodes generated successfully
 - [x] 12D state format verified across all episodes
 - [x] Training pipeline tested with linear_dynamics
 - [x] 5 continuous architectures implemented
 - [x] Data loaders confirmed working
 
-### **Ready to Execute ✅**
+### **Ready to Execute **
 - [x] Parallel training strategy designed
 - [x] Resource allocation planned
 - [x] Monitoring system prepared
@@ -195,7 +195,7 @@ All models trained with same causal integration to compare:
 
 ---
 
-## 🎉 **EXPECTED OUTCOMES**
+## **EXPECTED OUTCOMES**
 
 ### **Technical Success**
 - **5 trained continuous models** with proper convergence

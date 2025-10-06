@@ -1,6 +1,6 @@
 # Causal Intervention Testing & Real-World Deployment Plan
 
-## 🧪 CAUSAL INTERVENTION TESTING FRAMEWORK
+## CAUSAL INTERVENTION TESTING FRAMEWORK
 
 ### Experiment 1: Weather Intervention Testing
 **Objective**: Test if models can handle mid-episode weather changes
@@ -60,16 +60,16 @@
 - Causal Compositionality: Can models combine known effects correctly?
 - Out-of-Distribution Robustness: Prediction quality on edge cases
 
-## 🌍 REAL-WORLD DEPLOYMENT FRAMEWORK
+## REAL-WORLD DEPLOYMENT FRAMEWORK
 
 ### Deployment Pipeline Architecture
 
 ```
-[Trained GRU Model] → [Model Server] → [Inference API] → [Applications]
-                   ↓
-           [Monitoring & Validation]
-                   ↓
-           [Online Learning & Adaptation]
+[Trained GRU Model] [Model Server] [Inference API] [Applications]
+
+[Monitoring & Validation]
+
+[Online Learning & Adaptation]
 ```
 
 ### Production Components
@@ -85,17 +85,17 @@
 # Production API Interface
 POST /predict/next_state
 {
-  "current_state": [12D vector],
-  "action": [2D vector],
-  "causal_factors": [5D vector],
-  "prediction_horizon": int
+"current_state": [12D vector],
+"action": [2D vector],
+"causal_factors": [5D vector],
+"prediction_horizon": int
 }
 
 Response:
 {
-  "predicted_states": [[12D vectors]],
-  "confidence_scores": [float],
-  "causal_effects": {"weather": 0.3, "crowd": 0.1, ...}
+"predicted_states": [[12D vectors]],
+"confidence_scores": [float],
+"causal_effects": {"weather": 0.3, "crowd": 0.1, ...}
 }
 ```
 
@@ -141,7 +141,7 @@ Response:
 3. **Incremental Learning**: Update model weights without full retraining
 4. **Validation Loop**: Ensure adaptation improves rather than degrades performance
 
-## 🎯 SUCCESS CRITERIA
+## SUCCESS CRITERIA
 
 ### Causal Intervention Testing
 - **Counterfactual Accuracy**: >90% correlation with physics simulation
@@ -155,7 +155,7 @@ Response:
 - **System Uptime**: >99.9% availability
 - **User Adoption**: Successful integration in 3+ production applications
 
-## 📈 EXPECTED SCIENTIFIC IMPACT
+## EXPECTED SCIENTIFIC IMPACT
 
 This framework will:
 1. **Validate Causal Understanding**: Prove models capture true causality, not just correlations

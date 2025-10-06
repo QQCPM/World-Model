@@ -1,8 +1,8 @@
-# 📁 Archived Files
+# Archived Files
 
 This directory contains old/superseded files that were moved during the Phase 1 cleanup to maintain a clean codebase.
 
-## 🗂️ Directory Structure
+## Directory Structure
 
 ### `old_scripts/`
 Numbered pipeline scripts that were superseded by the new Phase 1 joint training system:
@@ -49,7 +49,7 @@ Old shell scripts for automation:
 - `quick_check.sh` - Old system check script
 - `quick_start.sh` - Old startup script
 
-## 🚀 Current Active System
+## Current Active System
 
 The current active system uses only these components:
 - `causal_architectures/` - Phase 1 dual-pathway architecture
@@ -60,11 +60,11 @@ The current active system uses only these components:
 - `CAUSAL_ARCHITECTURE_IMPLEMENTATION_PLAN.md` - Current implementation plan
 - `README.md` - Current project overview
 
-## 📋 Archive Date
+## Archive Date
 Files archived: September 16, 2025
-Phase 1 implementation completed: ✅
+Phase 1 implementation completed:
 
-## ⚠️ Important Notes
+## Important Notes
 - These files are preserved for reference but should not be used
 - The Phase 1 system replaces all functionality from archived files
 - If you need to reference old approaches, check the documentation in `old_documentation/`

@@ -29,9 +29,9 @@ After severe validation testing of our continuous physics system revealed sophis
 **Implementation Ideas**:
 ```
 Neural Component: Extract patterns and correlations from data
-↓
+
 Symbolic Component: Explicit causal graph with learned mechanisms
-↓
+
 Hybrid Reasoning: Use symbols for causal logic, neural for pattern filling
 ```
 
@@ -57,7 +57,7 @@ Hybrid Reasoning: Use symbols for causal logic, neural for pattern filling
 
 **Feasibility**: 60% - More tractable for continuous physics systems with known causal graph structure
 
-**Current System Alignment**: Our continuous campus environment already implements explicit causal graph structure (weather → friction, crowds → path costs). Could be enhanced with learned edge weights.
+**Current System Alignment**: Our continuous campus environment already implements explicit causal graph structure (weather friction, crowds path costs). Could be enhanced with learned edge weights.
 
 ### Pathway 3: Meta-Learning for Causal Generalization
 **Approach**: Train models to learn how to adapt causal understanding to new scenarios
